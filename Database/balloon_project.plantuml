@@ -1,0 +1,54 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class address {
+   address: text
+   city: text
+   postal_code: text
+   last_update: timestamp
+   request_id: integer
+   address_id: integer
+}
+class admin {
+   username: varchar(8)
+   password: varchar(8)
+   admin_id: integer
+}
+class banner {
+   image_url: text
+   title: text
+   banner_id: integer
+}
+class customer {
+   name: text
+   phone_number: text
+   email: text
+   customer_id: integer
+}
+class product {
+   name: text
+   price: numeric(8,2)
+   status: text
+   description: text
+   category: text
+   image_url: text
+   request_id: integer
+   product_id: integer
+}
+class request {
+   budget: numeric(8,2)
+   message: text
+   request_date: timestamp
+   event_date: timestamp
+   event_type: text
+   customer_id: integer
+   request_id: integer
+}
+
+address   -[#595959,plain]-^  request  : "request_id"
+product   -[#595959,plain]-^  request  : "request_id"
+request   -[#595959,plain]-^  customer : "customer_id"
+@enduml
